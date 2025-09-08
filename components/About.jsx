@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <div className="w-full px-[12%] py-10 scroll-mt-20" id="about">
+    <div className="w-full px-[12%] py-10 scroll-mt-20 mt-14" id="about">
       <h4 className="text-center mb-2 text-lg font-Ovo">Introduction</h4>
       <h2 className="text-center text-5xl font-Ovo">About Me</h2>
 
@@ -24,9 +24,9 @@ const About = () => {
             thrive on turning complex problems into elegant solutions.
           </p>
           <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
-            {infoList.map(({ icon, iconDark, title, description, index }) => (
+            {infoList.map(({ icon, title, description }) => (
               <li
-                key={index}
+                key={title} // use a stable unique field (better: an explicit id)
                 className="border-[0.5px] border-black/10 p-6 rounded-xl cursor-pointer hover:bg-light-hover hover:scale-110 transition-transform text-left gap-3 flex flex-col items-center hover:shadow-black"
               >
                 <Image src={icon} alt={title} className="w-10 mb-2" />
@@ -38,10 +38,10 @@ const About = () => {
 
           <h4 className="my-6 text-gray-700 font-Ovo">Tools I use</h4>
           <ul className="mt-4 flex items-center gap-3 sm:gap-5 flex-wrap">
-            {toolsData.map((tool, index) => (
+            {toolsData.map((tool) => (
               <li
+                key={typeof tool === "string" ? tool : tool.src} // the image path is unique
                 className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:scale-110 transition-transform bg-white/50 hover:bg-light-hover p-2"
-                key={index}
               >
                 <Image src={tool} alt="Tool" className="w-5 sm:w-7" />
               </li>
