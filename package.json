@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack  && next export",
-    "build:gh": "GITHUB_PAGES=true next build && next export",
+    "build": "next build --turbopack",
+    "build:gh": "GITHUB_PAGES=true next build",
     "start": "next start",
     "lint": "eslint"
   },
