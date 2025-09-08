@@ -9,14 +9,6 @@
     "start": "next start",
     "lint": "eslint"
   },
-  {
-  "scripts": {
-    "build": "next build && next export",
-    "build:gh": "GITHUB_PAGES=true next build && next export",
-    "dev": "next dev"
-  }
-}
-
   "dependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0",
