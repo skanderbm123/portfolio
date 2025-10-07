@@ -2,12 +2,10 @@
 
 /* Tailwind v4 theme tokens */
 @theme {
-  /* colors */
-  --color-light-hover: #3ab7bf; /* <-- add # */
+  --color-light-hover: #3ab7bf;
   --color-dark-hover: #2a004a;
-  --color-dark-theme: #11001f;
+  --color-dark-theme: #121212;
 
-  /* fonts */
   --font-outfit: "Outfit", sans-serif;
   --font-ovo: "Ovo", serif;
 
@@ -17,18 +15,15 @@
   --cols-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+/* responsive, centered auto-fit grid */
 @utility grid-cols-auto {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(240px, 1fr)
-  ); /* desktop/tablet default */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   justify-content: center;
-  padding-inline: 12%; /* match your section spacing */
+  padding-inline: 12%;
 }
 
-/* MOBILE ADJUSTMENT */
 @media (max-width: 640px) {
   .grid-cols-auto {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -36,5 +31,5 @@
   }
 }
 
-/* optional: class-based dark mode */
+/* class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
