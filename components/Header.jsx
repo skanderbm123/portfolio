@@ -10,9 +10,9 @@ const Header = () => {
     >
       <div>
         <Image
-          src={assets.profile_img}
-          alt="profile"
-          className="w-32 rounded-full mx-auto"
+          src={assets.logo}
+          alt="logo"
+          className="w-36 sm:w-32 md:w-28 cursor-pointer mr-6 dark:invert"
         />
       </div>
 
