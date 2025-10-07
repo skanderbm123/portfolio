@@ -17,5 +17,24 @@
   --cols-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+@utility grid-cols-auto {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(240px, 1fr)
+  ); /* desktop/tablet default */
+  gap: 1.5rem;
+  justify-content: center;
+  padding-inline: 12%; /* match your section spacing */
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 640px) {
+  .grid-cols-auto {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding-inline: 8%;
+  }
+}
+
 /* optional: class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));

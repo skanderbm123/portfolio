@@ -123,7 +123,8 @@ export const serviceData = [
   {
     icon: assets.graphics_icon,
     title: "Graphics design",
-    description: "Creative design solutions to enhance visual communication...",
+    description:
+      "Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication... ,Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication...",
     link: "",
   },
 ];
