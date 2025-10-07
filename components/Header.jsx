@@ -49,7 +49,11 @@ const Header = () => {
                      dark:border-white/25 dark:text-white dark:hover:bg-white/10"
         >
           My Resume
-          <Image src={assets.download_icon} alt="profile" className="w-4" />
+          <Image
+            src={assets.download_icon}
+            alt="profile"
+            className="w-5 invert-[.0] dark:invert transition-transform duration-200 group-hover:translate-x-1"
+          />
         </a>
       </div>
     </div>

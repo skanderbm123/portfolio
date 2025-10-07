@@ -9,7 +9,7 @@ const Footer = () => {
         <Image
           src={assets.logo}
           alt="logo"
-          className="w-36 mx-auto mb-6 dark:invert"
+          className="w-52 mx-auto mb-2 dark:invert"
         />
       </div>
 

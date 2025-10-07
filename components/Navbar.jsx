@@ -60,7 +60,7 @@ const Navbar = () => {
           <Image
             src={assets.logo}
             alt="logo"
-            className="w-28 cursor-pointer mr-14 dark:invert"
+            className="w-24 sm:w-28 md:w-32 lg:w-36 cursor-pointer mr-14 dark:invert"
           />
         </a>
 
