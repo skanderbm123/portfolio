@@ -4,17 +4,16 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="mt-20 pb-10">
+    <footer className="mt-3 pb-10">
       <div className="text-center">
         <Image
           src={assets.logo}
           alt="logo"
-          className="w-52 mx-auto mb-2 dark:invert"
+          className="w-50 mx-auto mb-0 dark:invert"
         />
       </div>
 
-      <hr className="border-gray-300 mx-[12%] mb-6" />
-
+      <hr className="border-gray-300 mx-[12%] mb-0" />
       <div className="flex flex-col sm:flex-row items-center justify-between text-sm px-[12%]">
         <p className="mb-4 sm:mb-0">
           © 2025 Skander Ben Mekki. All rights reserved.

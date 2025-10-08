@@ -1,41 +1,68 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 
 const Header = () => {
   return (
-    <div
-      className="w-11/12 max-w-3xl text-center mx-auto min-h-screen flex flex-col justify-center items-center gap-4 -mt-10"
+    <section
       id="top"
+      className="w-11/12 max-w-3xl text-center mx-auto min-h-screen flex flex-col justify-center items-center gap-4 -mt-10"
     >
-      <div>
+      {/* Profile image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <Image
           src={assets.profile_img}
           alt="profile"
           className="w-32 rounded-full mx-auto"
         />
-      </div>
+      </motion.div>
 
-      {/* FIXED: font-Ovo */}
-      <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">
+      {/* Intro */}
+      <motion.h3
+        className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
         Hi! I'm Skander Ben Mekki{" "}
         <Image src={assets.hand_icon} alt="" className="w-6" />
-      </h3>
+      </motion.h3>
 
-      <h1 className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">
+      {/* Title */}
+      <motion.h1
+        className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo  red-underline"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.7 }}
+      >
         A Passionate Full-Stack Developer
-      </h1>
+      </motion.h1>
 
-      <p className="max-w-2xl mx-auto font-Ovo">
+      {/* Subtitle */}
+      <motion.p
+        className="max-w-2xl mx-auto font-Ovo"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+      >
         I create modern and responsive web applications with a focus on
-      </p>
+      </motion.p>
 
-      <div className="flex flex-col sm:flex-row items-center gap-6 mt-8">
+      {/* Buttons */}
+      <motion.div
+        className="flex flex-col sm:flex-row items-center gap-6 mt-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9, duration: 0.7 }}
+      >
         <a
           href="#contact"
-          className="px-10 py-3 border bg-black text-white rounded-full flex items-center gap-2
-                     border-black hover:bg-black/90
-                     dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20"
+          className="red-btn px-10 py-3 rounded-full flex items-center gap-2"
         >
           Contact me
           <Image src={assets.right_arrow_white} alt="profile" className="w-4" />
@@ -46,17 +73,18 @@ const Header = () => {
           download
           className="px-10 py-3 border rounded-full flex items-center gap-2
                      border-black text-black hover:bg-black/[0.05]
-                     dark:border-white/25 dark:text-white dark:hover:bg-white/10"
+                     dark:border-white/25 dark:text-white dark:hover:bg-white/10
+                     transition-all duration-300 hover:scale-105"
         >
           My Resume
           <Image
             src={assets.download_icon}
             alt="profile"
-            className="w-5 invert-[.0] dark:invert transition-transform duration-200 group-hover:translate-x-1"
+            className="w-5 invert-[.0] dark:invert"
           />
         </a>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 

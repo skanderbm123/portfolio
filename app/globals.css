@@ -5,13 +5,10 @@
   --color-light-hover: #3ab7bf;
   --color-dark-hover: #2a004a;
   --color-dark-theme: #121212;
-
   --font-outfit: "Outfit", sans-serif;
   --font-ovo: "Ovo", serif;
-
   --box-shadow-black: 4px 4px 0 #000;
   --box-shadow-white: 4px 4px 0 #fff;
-
   --cols-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
 
@@ -23,7 +20,6 @@
   justify-content: center;
   padding-inline: 12%;
 }
-
 @media (max-width: 640px) {
   .grid-cols-auto {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -31,5 +27,178 @@
   }
 }
 
-/* class-based dark mode */
+/* class-based dark mode (v4 already supports dark: but this is okay) */
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .red-btn {
+    @apply bg-[#d6334f] text-white border border-[#c72e46]
+           shadow-[0_4px_10px_rgba(214,51,79,0.25)]
+           hover:bg-[#b52a40] hover:shadow-[0_6px_14px_rgba(181,42,64,0.35)]
+           transition-all duration-300;
+  }
+
+  .red-underline::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 2px;
+    background-color: #d63b44;
+    margin: 8px auto 0;
+    border-radius: 9999px;
+  }
+
+  :root {
+    --color-light-hover: #e63946;
+  }
+
+  .dark {
+    --color-light-hover: #ff4d4d;
+  }
+
+  .aurora-bg {
+    background: radial-gradient(
+        at 20% 80%,
+        rgba(58, 183, 191, 0.15),
+        transparent 70%
+      ),
+      radial-gradient(at 80% 20%, rgba(255, 0, 128, 0.1), transparent 60%),
+      radial-gradient(at 50% 50%, rgba(255, 255, 255, 0.05), transparent 70%);
+    background-color: #0a0a0a;
+    background-blend-mode: screen;
+  }
+
+  .nav-link {
+    @apply relative text-gray-700 dark:text-gray-200 font-medium;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 bottom-[-4px] w-0 h-[2px] bg-[#d6334f] transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+}
+
+/* 🔥 animation */
+@layer utilities {
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fadeUp 0.7s ease-out forwards;
+    will-change: transform, opacity;
+  }
+  @keyframes slideUpLeft {
+    0% {
+      opacity: 0;
+      transform: translateY(80px) translateX(-60px) scale(0.9);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateY(-8px) translateX(4px) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+    }
+  }
+
+  @keyframes slideUpRight {
+    0% {
+      opacity: 0;
+      transform: translateY(80px) translateX(60px) scale(0.9);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateY(-8px) translateX(-4px) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+    }
+  }
+  .animate-slide-up-left {
+    animation: slideUpLeft 0.9s cubic-bezier(0.22, 1.12, 0.48, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .animate-slide-up-right {
+    animation: slideUpRight 0.9s cubic-bezier(0.22, 1.12, 0.48, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  @keyframes cardEnterLeft {
+    0% {
+      opacity: 0;
+      transform: translateY(100px) rotate(-4deg) scale(0.9);
+      filter: blur(4px);
+    }
+    60% {
+      opacity: 0.9;
+      transform: translateY(-10px) rotate(1deg) scale(1.03);
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0) scale(1);
+    }
+  }
+
+  @keyframes cardEnterRight {
+    0% {
+      opacity: 0;
+      transform: translateY(100px) rotate(4deg) scale(0.9);
+      filter: blur(4px);
+    }
+    60% {
+      opacity: 0.9;
+      transform: translateY(-10px) rotate(-1deg) scale(1.03);
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0) scale(1);
+    }
+  }
+
+  @keyframes contactIn {
+    0% {
+      opacity: 0;
+      transform: translateY(60px) scale(0.9);
+      filter: blur(4px);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateY(-6px) scale(1.02);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-contact-in {
+    animation: contactIn 0.9s cubic-bezier(0.22, 1.12, 0.48, 1) forwards;
+    will-change: transform, opacity, filter;
+  }
+
+  .animate-card-left {
+    animation: cardEnterLeft 1s cubic-bezier(0.22, 1.12, 0.48, 1) forwards;
+    will-change: transform, opacity, filter;
+  }
+
+  .animate-card-right {
+    animation: cardEnterRight 1s cubic-bezier(0.22, 1.12, 0.48, 1) forwards;
+    will-change: transform, opacity, filter;
+  }
+}
