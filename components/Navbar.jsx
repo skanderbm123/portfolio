@@ -9,17 +9,28 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const HEADER_OFFSET = 90; // Adjust until perfect (80–100 is good range)
+
+  const scrollToId = (e, id) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    const el = document.querySelector(id);
+    if (!el) return;
+    const y =
+      el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    history.replaceState(null, "", id);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const shouldScroll = window.scrollY > 50;
       if (shouldScroll !== isScrolled) setIsScrolled(shouldScroll);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
 
-  // Theme toggle
   useEffect(() => {
     const stored = localStorage.getItem("theme");
     const prefersDark = window.matchMedia(
@@ -37,6 +48,14 @@ const Navbar = () => {
     localStorage.setItem("theme", next ? "dark" : "light");
   };
 
+  const navLinks = [
+    { label: "Home", id: "#top" },
+    { label: "About me", id: "#about" },
+    { label: "Experience", id: "#experience" },
+    { label: "Projects", id: "#projects" },
+    { label: "Contact", id: "#contact" },
+  ];
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between
@@ -47,7 +66,6 @@ const Navbar = () => {
                       : "bg-white/80 dark:bg-[var(--color-dark-theme)]/80 backdrop-blur-sm"
                   }`}
     >
-      {/* Logo */}
       <a href="#top">
         <Image
           src={assets.logo}
@@ -56,27 +74,24 @@ const Navbar = () => {
         />
       </a>
 
-      {/* Links */}
+      {/* Desktop Links */}
       <ul
         className="hidden md:flex items-center gap-6 lg:gap-8 border rounded-full px-12 py-3
              bg-white/85 dark:bg-[#111]/70 backdrop-blur-xl
              border-black/10 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.04)]
              transition-all duration-300"
       >
-        {["Home", "About me", "Experience", "Projects", "Contact"].map(
-          (label, i) => (
-            <li key={label}>
-              <a
-                href={
-                  ["#top", "#about", "#experience", "#projects", "#contact"][i]
-                }
-                className="font-outfit hover:text-[var(--color-light-hover)] transition-colors"
-              >
-                {label}
-              </a>
-            </li>
-          )
-        )}
+        {navLinks.map((link) => (
+          <li key={link.id}>
+            <a
+              href={link.id}
+              onClick={(e) => scrollToId(e, link.id)}
+              className="font-outfit hover:text-[var(--color-light-hover)] transition-colors"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
 
       {/* Right Side */}
@@ -97,6 +112,7 @@ const Navbar = () => {
 
         <a
           href="#contact"
+          onClick={(e) => scrollToId(e, "#contact")}
           className="hidden md:flex items-center gap-3 
              bg-[#d63b44] text-white border border-[#b82f38] 
              font-medium px-5 py-2 rounded-full 
@@ -136,23 +152,17 @@ const Navbar = () => {
         </button>
 
         <ul className="flex flex-col gap-6 py-20 px-10">
-          {["Home", "About", "Experience", "Projects", "Contact"].map(
-            (label, i) => (
-              <li key={label}>
-                <a
-                  href={
-                    ["#top", "#about", "#experience", "#projects", "#contact"][
-                      i
-                    ]
-                  }
-                  onClick={() => setIsMenuOpen(false)}
-                  className="font-outfit text-lg hover:text-[var(--color-light-hover)] transition-colors"
-                >
-                  {label}
-                </a>
-              </li>
-            )
-          )}
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a
+                href={link.id}
+                onClick={(e) => scrollToId(e, link.id)}
+                className="font-outfit text-lg hover:text-[var(--color-light-hover)] transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

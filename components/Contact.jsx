@@ -112,8 +112,9 @@ const Contact = () => {
           type="submit"
           className="contact-animate opacity-0 py-3 px-8 w-max flex items-center justify-between gap-2
                     text-white rounded-full mx-auto hover:scale-110 duration-300
-                   dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20
-                   shadow-[4px_4px_0_#000] dark:shadow-[4px_4px_0_#fff]"
+                   bg-[#d63b44] text-white border border-[#b82f38] 
+             font-medium px-5 py-2 rounded-full 
+             hover:bg-[#b82f38] hover:shadow-[0_4px_14px_rgba(214,59,68,0.35)]"
         >
           Send Message
           <Image src={assets.right_arrow_white} alt="send" className="w-5" />
