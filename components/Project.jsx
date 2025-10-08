@@ -149,13 +149,18 @@ const Project = () => {
 
             {/* VIDEO */}
             {selectedProject.video ? (
-              <div className="aspect-video rounded-lg overflow-hidden shadow-md">
-                <iframe
-                  src={selectedProject.video}
-                  className="w-full h-full"
-                  allowFullScreen
-                ></iframe>
-              </div>
+              <p className="text-sm text-center mt-3 text-gray-500">
+                If the video doesn’t load,{" "}
+                <a
+                  href={selectedProject.video.replace("/embed/", "/watch?v=")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline"
+                >
+                  open it on YouTube
+                </a>
+                .
+              </p>
             ) : selectedProject.images ? (
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                 {/* Image */}

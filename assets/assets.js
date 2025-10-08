@@ -126,27 +126,27 @@ export const experienceData = [
 ];
 
 export const infoList = [
-  { icon: "/icons/code.svg", title: "Languages", description: "HTML, CSS..." },
+  { icon: "icons/code.svg", title: "Languages", description: "HTML, CSS..." },
   {
-    icon: "/icons/education.svg",
+    icon: "icons/education.svg",
     title: "Education",
     description: "B.Tech...",
   },
-  { icon: "/icons/projects.svg", title: "Projects", description: "..." },
+  { icon: "icons/projects.svg", title: "Projects", description: "..." },
 ];
 
 export const toolsData = [
-  { name: "VSCode", src: "/icons/vscode.svg" },
-  { name: "Firebase", src: "/icons/firebase.svg" },
-  { name: "MongoDB", src: "/icons/mongodb.svg" },
-  { name: "Figma", src: "/icons/figma.svg" },
-  { name: "Git", src: "/icons/git.svg" },
+  { name: "VSCode", src: "icons/vscode.svg" },
+  { name: "Firebase", src: "icons/firebase.svg" },
+  { name: "MongoDB", src: "icons/mongodb.svg" },
+  { name: "Figma", src: "icons/figma.svg" },
+  { name: "Git", src: "icons/git.svg" },
 ];
 
 export const logos = {
-  appdirect: "/logos/appdirect.png",
-  desjardins: "/logos/desjardins.png",
-  veeva: "/logos/veeva.png",
+  appdirect: "logos/appdirect.png",
+  desjardins: "logos/desjardins.png",
+  veeva: "logos/veeva.png",
 };
 
 // ABOUT SECTION DATA
@@ -158,17 +158,17 @@ export const aboutData = {
 
   infoList: [
     {
-      icon: "/icons/code-icon.png",
+      icon: "icons/code-icon.png",
       title: "Languages",
       description: "HTML, CSS, JavaScript, React, Next.js",
     },
     {
-      icon: "/icons/edu-icon.png",
+      icon: "icons/edu-icon.png",
       title: "Education",
       description: "B.Tech in Computer Science",
     },
     {
-      icon: "/icons/project-icon.png",
+      icon: "icons/project-icon.png",
       title: "Projects",
       description: "Built more than 5 personal projects",
     },
@@ -176,10 +176,10 @@ export const aboutData = {
 
   toolsTitle: "Tools I use",
   toolsData: [
-    { name: "VSCode", src: "/icons/vscode.png" },
-    { name: "Firebase", src: "/icons/firebase.png" },
-    { name: "MongoDB", src: "/icons/mongodb.png" },
-    { name: "Figma", src: "/icons/figma.png" },
-    { name: "Git", src: "/icons/git.png" },
+    { name: "VSCode", src: "icons/vscode.png" },
+    { name: "Firebase", src: "icons/firebase.png" },
+    { name: "MongoDB", src: "icons/mongodb.png" },
+    { name: "Figma", src: "icons/figma.png" },
+    { name: "Git", src: "icons/git.png" },
   ],
 };
