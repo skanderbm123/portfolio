@@ -80,15 +80,14 @@ export const workData = [
   {
     title: "Geo-based app",
     description: "Mobile app using GPS and map APIs.",
-    bgImage: "/work-2.png",
-    images: ["/geo-1.png"],
+    bgImage: "work-2.png",
+    images: ["geo-1.png"],
   },
   {
     title: "Frontend project",
     description: "Landing page built with Next.js & TailwindCSS.",
-    bgImage: "/work-1.png",
-    video:
-      "https://www.youtube.com/watch?v=5ALFVv_tdYw&list=RD5ALFVv_tdYw&start_radio=1",
+    bgImage: "work-1.png",
+    video: "PSYLOCKE_2024-12-10_22-32-43.mp4",
   },
 ];
 

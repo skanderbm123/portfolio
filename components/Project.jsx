@@ -140,27 +140,23 @@ const Project = () => {
             >
               ×
             </button>
-
             <h2 className="text-3xl font-Ovo mb-4">{selectedProject.title}</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               {selectedProject.description ||
                 "No description provided for this project yet."}
             </p>
-
             {/* VIDEO */}
             {selectedProject.video ? (
-              <p className="text-sm text-center mt-3 text-gray-500">
-                If the video doesn’t load,{" "}
-                <a
-                  href={selectedProject.video.replace("/embed/", "/watch?v=")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 underline"
+              <div className="aspect-video rounded-lg overflow-hidden shadow-md bg-black">
+                <video
+                  src={selectedProject.video}
+                  type="video/mp4"
+                  controls
+                  className="w-full h-full object-cover"
                 >
-                  open it on YouTube
-                </a>
-                .
-              </p>
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             ) : selectedProject.images ? (
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                 {/* Image */}
