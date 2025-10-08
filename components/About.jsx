@@ -45,7 +45,8 @@ const About = () => {
       ref={sectionRef}
       id="about"
       className="opacity-0 translate-y-6 transition-none
-                 w-full px-[20%] py-20 flex flex-col justify-center scroll-mt-20 min-h-screen"
+             w-full px-[20%] py-20 flex flex-col justify-center
+             scroll-mt-40 sm:scroll-mt-28 min-h-screen"
     >
       <h4 className="text-center mb-2 text-lg font-Ovo">Introduction</h4>
       <h2 className="text-center text-5xl font-Ovo  red-underline">About Me</h2>
