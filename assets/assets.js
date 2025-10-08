@@ -78,82 +78,108 @@ export const assets = {
 
 export const workData = [
   {
-    title: "Frontend project",
-    description: "Web Design",
-    bgImage: "/work-1.png",
-  },
-  {
-    title: "Geo based app",
-    description: "Mobile App",
+    title: "Geo-based app",
+    description: "Mobile app using GPS and map APIs.",
     bgImage: "/work-2.png",
+    images: ["/geo-1.png"],
   },
   {
-    title: "Photography site",
-    description: "Web Design",
-    bgImage: "/work-3.png",
-  },
-  {
-    title: "UI/UX designing",
-    description: "UI/UX Design",
-    bgImage: "/work-4.png",
+    title: "Frontend project",
+    description: "Landing page built with Next.js & TailwindCSS.",
+    bgImage: "/work-1.png",
+    video:
+      "https://www.youtube.com/watch?v=5ALFVv_tdYw&list=RD5ALFVv_tdYw&start_radio=1",
   },
 ];
 
-export const serviceData = [
+export const experienceData = [
   {
-    icon: assets.web_icon,
-    title: "Web design",
-    description: "Web development is the process of building, programming...",
-    link: "",
+    logo: "/logos/appdirect.png",
+    company: "AppDirect",
+    title: "Full-Stack Engineer II",
+    years: "2021 – Present",
+    location: "Montreal, Canada",
+    description:
+      "Building scalable integrations and distributed systems using Java, Spring Boot, React, and GraphQL. Leading DevOps initiatives with CI/CD pipelines and Kubernetes deployments.",
+    link: "https://www.appdirect.com/",
   },
   {
-    icon: assets.mobile_icon,
-    title: "Mobile app",
+    logo: "/logos/desjardins.png",
+    company: "Desjardins Group",
+    title: "Software Developer Intern",
+    years: "2020 – 2021",
+    location: "Lévis, Canada",
     description:
-      "Mobile app development involves creating software for mobile devices...",
-    link: "",
+      "Developed internal tools for the EPP team using Angular and Node.js. Improved automation and data visualization for the product management department.",
+    link: "https://www.desjardins.com/",
   },
   {
-    icon: assets.ui_icon,
-    title: "UI/UX design",
+    logo: "/logos/veeva.png",
+    company: "Veeva Systems",
+    title: "Frontend Developer (Contract)",
+    years: "2019 – 2020",
+    location: "Remote, USA",
     description:
-      "UI/UX design focuses on creating a seamless user experience...",
-    link: "",
-  },
-  {
-    icon: assets.graphics_icon,
-    title: "Graphics design",
-    description:
-      "Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication... ,Creative design solutions to enhance visual communication..., Creative design solutions to enhance visual communication...",
-    link: "",
+      "Designed and implemented modern React components aligned with Veeva's brand. Focused on performance and accessibility for their SaaS solutions.",
+    link: "https://www.veeva.com/",
   },
 ];
 
 export const infoList = [
+  { icon: "/icons/code.svg", title: "Languages", description: "HTML, CSS..." },
   {
-    icon: assets.code_icon,
-    iconDark: assets.code_icon_dark,
-    title: "Languages",
-    description: "HTML, CSS, JavaScript React Js, Next Js",
-  },
-  {
-    icon: assets.edu_icon,
-    iconDark: assets.edu_icon_dark,
+    icon: "/icons/education.svg",
     title: "Education",
-    description: "B.Tech in Computer Science",
+    description: "B.Tech...",
   },
-  {
-    icon: assets.project_icon,
-    iconDark: assets.project_icon_dark,
-    title: "Projects",
-    description: "Built more than 5 projects",
-  },
+  { icon: "/icons/projects.svg", title: "Projects", description: "..." },
 ];
 
 export const toolsData = [
-  { src: assets.vscode, name: "VS Code" },
-  { src: assets.firebase, name: "Firebase" },
-  { src: assets.mongodb, name: "MongoDB" },
-  { src: assets.figma, name: "Figma" },
-  { src: assets.git, name: "Git" },
+  { name: "VSCode", src: "/icons/vscode.svg" },
+  { name: "Firebase", src: "/icons/firebase.svg" },
+  { name: "MongoDB", src: "/icons/mongodb.svg" },
+  { name: "Figma", src: "/icons/figma.svg" },
+  { name: "Git", src: "/icons/git.svg" },
 ];
+
+export const logos = {
+  appdirect: "/logos/appdirect.png",
+  desjardins: "/logos/desjardins.png",
+  veeva: "/logos/veeva.png",
+};
+
+// ABOUT SECTION DATA
+export const aboutData = {
+  introTitle: "Introduction",
+  sectionTitle: "About Me",
+  paragraph:
+    "I'm Skander Ben Mekki, a passionate Full-Stack Developer with experience building modern, scalable web applications. I love creating products that are both functional and beautiful, blending clean code with thoughtful design.",
+
+  infoList: [
+    {
+      icon: "/icons/code-icon.png",
+      title: "Languages",
+      description: "HTML, CSS, JavaScript, React, Next.js",
+    },
+    {
+      icon: "/icons/edu-icon.png",
+      title: "Education",
+      description: "B.Tech in Computer Science",
+    },
+    {
+      icon: "/icons/project-icon.png",
+      title: "Projects",
+      description: "Built more than 5 personal projects",
+    },
+  ],
+
+  toolsTitle: "Tools I use",
+  toolsData: [
+    { name: "VSCode", src: "/icons/vscode.png" },
+    { name: "Firebase", src: "/icons/firebase.png" },
+    { name: "MongoDB", src: "/icons/mongodb.png" },
+    { name: "Figma", src: "/icons/figma.png" },
+    { name: "Git", src: "/icons/git.png" },
+  ],
+};

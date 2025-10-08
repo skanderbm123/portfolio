@@ -1,8 +1,8 @@
 "use client";
 
-import { assets, infoList, toolsData } from "@/assets/assets";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { assets, aboutData } from "@/assets/assets";
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -29,15 +29,7 @@ const About = () => {
 
     observer.observe(el);
 
-    const onHash = () => {
-      if (window.location.hash === "#about") onEnter();
-    };
-    window.addEventListener("hashchange", onHash);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("hashchange", onHash);
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -49,27 +41,29 @@ const About = () => {
              scroll-mt-[96px] md:scroll-mt-[100px] min-h-screen"
     >
       <div className="max-w-6xl w-full flex flex-col justify-center items-center">
-        <h4 className="text-center mb-2 text-lg font-Ovo">Introduction</h4>
+        <h4 className="text-center mb-2 text-lg font-Ovo">
+          {aboutData.introTitle}
+        </h4>
         <h2 className="text-center text-5xl font-Ovo red-underline">
-          About Me
+          {aboutData.sectionTitle}
         </h2>
 
         <div className="flex w-full flex-col lg:flex-row items-center gap-20 mt-20">
-          <div className="w-64 sm:w-80 rounded-3xl max-w-none overflow-hidden flex-shrink-0">
+          <div className="w-64 sm:w-80 rounded-3xl overflow-hidden flex-shrink-0">
             <Image
               src={assets.user_image}
-              alt="user"
+              alt="Skander Ben Mekki"
               className="w-full rounded-3xl"
             />
           </div>
 
           <div className="flex-1 flex flex-col items-center lg:items-start">
             <p className="mb-10 max-w-2xl font-Ovo text-center lg:text-left">
-              I'm Skander Ben Mekki, a passionate Full-Stack Developer...
+              {aboutData.paragraph}
             </p>
 
             <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
-              {infoList.map(({ icon, title, description }) => (
+              {aboutData.infoList.map(({ icon, title, description }) => (
                 <li
                   key={title}
                   className="p-6 rounded-xl cursor-pointer transition-transform text-left gap-3
@@ -77,7 +71,14 @@ const About = () => {
                              hover:bg-[var(--color-light-hover)]/15
                              dark:border-white/15 dark:bg-white/[0.02] dark:hover:bg-white/[0.08]"
                 >
-                  <Image src={icon} alt={title} className="w-10 mb-2" />
+                  <Image
+                    src={icon}
+                    alt={title}
+                    width={40}
+                    height={40}
+                    className="mb-2"
+                  />
+
                   <h3 className="font-medium">{title}</h3>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
                     {description}
@@ -86,11 +87,11 @@ const About = () => {
               ))}
             </ul>
 
-            <h4 className="my-6 text-gray-700 dark:text-gray-300 font-Ovo">
-              Tools I use
+            <h4 className="my-3 text-gray-700 dark:text-gray-300 font-Ovo">
+              {aboutData.toolsTitle}
             </h4>
             <ul className="mt-4 flex items-center gap-3 sm:gap-5 flex-wrap justify-center lg:justify-start">
-              {toolsData.map((tool) => (
+              {aboutData.toolsData.map((tool) => (
                 <li
                   key={tool.name}
                   className="group relative flex items-center justify-center w-12 sm:w-14 aspect-square
@@ -101,8 +102,11 @@ const About = () => {
                   <Image
                     src={tool.src}
                     alt={tool.name}
-                    className="w-5 sm:w-7"
+                    width={28}
+                    height={28}
+                    className="sm:w-7"
                   />
+
                   <span
                     className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs
                                    text-gray-700 dark:text-gray-300 opacity-0 group-hover:opacity-100
