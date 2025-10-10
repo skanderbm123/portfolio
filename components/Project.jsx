@@ -7,9 +7,9 @@ import Image from "next/image";
 const Project = () => {
   const sectionRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [currentImg, setCurrentImg] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Intersection animation
+  // Animate cards on scroll
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -41,24 +41,24 @@ const Project = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Change image in modal
-  const nextImg = () => {
-    if (!selectedProject?.images) return;
-    setCurrentImg((prev) =>
-      prev === selectedProject.images.length - 1 ? 0 : prev + 1
+  // Navigation inside modal
+  const nextSlide = () => {
+    if (!selectedProject?.media?.length) return;
+    setCurrentIndex((prev) =>
+      prev === selectedProject.media.length - 1 ? 0 : prev + 1
     );
   };
 
-  const prevImg = () => {
-    if (!selectedProject?.images) return;
-    setCurrentImg((prev) =>
-      prev === 0 ? selectedProject.images.length - 1 : prev - 1
+  const prevSlide = () => {
+    if (!selectedProject?.media?.length) return;
+    setCurrentIndex((prev) =>
+      prev === 0 ? selectedProject.media.length - 1 : prev - 1
     );
   };
 
-  // Reset current image when opening a new modal
+  // Reset current slide when opening a project
   useEffect(() => {
-    setCurrentImg(0);
+    setCurrentIndex(0);
   }, [selectedProject]);
 
   return (
@@ -76,17 +76,17 @@ const Project = () => {
           Here are some of my personal projects:
         </p>
 
-        {/* Grid */}
+        {/* GRID */}
         <div className="grid [grid-template-columns:var(--cols-auto)] gap-8 my-10">
-          {workData.map((project, index) => (
+          {workData.map((project, i) => (
             <div
-              key={index}
+              key={i}
               onClick={() => setSelectedProject(project)}
               className="project-card opacity-0 relative h-72 sm:h-80 bg-no-repeat bg-cover bg-center rounded-2xl 
                  overflow-hidden group transition-all duration-500 shadow-md hover:shadow-xl cursor-pointer"
               style={{ backgroundImage: `url(${project.bgImage})` }}
             >
-              {/* Hover overlay */}
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
               {/* Info Box */}
@@ -99,18 +99,11 @@ const Project = () => {
              transition-all duration-500 group-hover:bottom-8 group-hover:scale-[1.03]"
               >
                 <div>
-                  <h2
-                    className="font-semibold text-gray-900 dark:text-white 
-                 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
-                  >
+                  <h2 className="font-semibold text-gray-900 dark:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                     {project.title}
                   </h2>
-
                   {project.cardInfo && (
-                    <p
-                      className="text-sm text-gray-800 dark:text-gray-200 leading-snug 
-                   drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
-                    >
+                    <p className="text-sm text-gray-800 dark:text-gray-200 leading-snug drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]">
                       {project.cardInfo}
                     </p>
                   )}
@@ -143,7 +136,7 @@ const Project = () => {
             className="bg-white dark:bg-[#1a1a1a] text-black dark:text-white rounded-2xl p-8 w-[90%] sm:w-[70%] lg:w-[50%] max-h-[80vh] overflow-y-auto shadow-2xl relative animate-fade-up"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
+            {/* CLOSE */}
             <button
               onClick={() => setSelectedProject(null)}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 text-2xl"
@@ -151,7 +144,26 @@ const Project = () => {
               ✕
             </button>
 
-            <h2 className="text-3xl font-Ovo mb-4">{selectedProject.title}</h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-xl font-semibold">{selectedProject.title}</h2>
+              {selectedProject.github && (
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-black dark:hover:text-white transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    className="w-6 h-6 sm:w-5 sm:h-5"
+                  >
+                    <path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.744.083-.729.083-.729 1.205.085 1.84 1.238 1.84 1.238 1.07 1.834 2.808 1.304 3.495.997.107-.775.42-1.304.763-1.604-2.665-.3-5.466-1.333-5.466-5.931 0-1.31.465-2.382 1.235-3.222-.125-.303-.54-1.524.115-3.176 0 0 1.01-.323 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.553 3.3-1.23 3.3-1.23.655 1.652.24 2.873.12 3.176.77.84 1.23 1.912 1.23 3.222 0 4.61-2.805 5.63-5.475 5.922.43.372.81 1.105.81 2.227 0 1.608-.015 2.902-.015 3.293 0 .317.21.693.825.574C20.565 21.795 24 17.297 24 12c0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+              )}
+            </div>
 
             {/* Description */}
             {Array.isArray(selectedProject.description) ? (
@@ -172,50 +184,48 @@ const Project = () => {
               </p>
             )}
 
-            {/* Media */}
-            {selectedProject.video ? (
-              <div className="aspect-video rounded-lg overflow-hidden shadow-md bg-black">
-                <video
-                  src={selectedProject.video}
-                  type="video/mp4"
-                  controls
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ) : selectedProject.images ? (
+            {/* ---- MEDIA CAROUSEL ---- */}
+            {selectedProject.media && selectedProject.media.length > 0 && (
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                {/* Image */}
-                <Image
-                  key={selectedProject.images[currentImg].src}
-                  src={selectedProject.images[currentImg].src}
-                  alt={`${selectedProject.title} screenshot`}
-                  fill
-                  className="object-cover transition-transform duration-300 hover:scale-105 active:scale-[1.2] sm:active:scale-100 sm:hover:scale-100 sm:cursor-default cursor-zoom-in"
-                  onClick={() => {
-                    if (window.innerWidth < 768)
-                      window.open(
-                        selectedProject.images[currentImg].src,
-                        "_blank"
-                      );
-                  }}
-                />
+                {/* Current Slide */}
+                {selectedProject.media[currentIndex].type === "image" ? (
+                  <Image
+                    src={selectedProject.media[currentIndex].src}
+                    alt={`${selectedProject.title} screenshot`}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105 cursor-zoom-in"
+                    onClick={() => {
+                      if (window.innerWidth < 768)
+                        window.open(
+                          selectedProject.media[currentIndex].src,
+                          "_blank"
+                        );
+                    }}
+                  />
+                ) : (
+                  <video
+                    src={selectedProject.media[currentIndex].src}
+                    controls
+                    className="w-full h-full object-cover"
+                  />
+                )}
 
                 {/* Caption */}
-                {selectedProject.images[currentImg].caption && (
+                {selectedProject.media[currentIndex].caption && (
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 text-sm font-medium text-white bg-black/60 px-3 py-1 rounded-md shadow-md">
-                    {selectedProject.images[currentImg].caption}
+                    {selectedProject.media[currentIndex].caption}
                   </div>
                 )}
 
                 {/* Arrows */}
                 <button
-                  onClick={prevImg}
+                  onClick={prevSlide}
                   className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
                 >
                   ‹
                 </button>
                 <button
-                  onClick={nextImg}
+                  onClick={nextSlide}
                   className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2"
                 >
                   ›
@@ -223,21 +233,17 @@ const Project = () => {
 
                 {/* Dots */}
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                  {selectedProject.images.map((_, i) => (
+                  {selectedProject.media.map((_, i) => (
                     <div
                       key={i}
                       className={`w-2 h-2 rounded-full transition-all ${
-                        i === currentImg
+                        i === currentIndex
                           ? "bg-white scale-110"
                           : "bg-white/50 hover:bg-white/80"
                       }`}
                     />
                   ))}
                 </div>
-              </div>
-            ) : (
-              <div className="w-full aspect-video bg-gray-100 dark:bg-white/10 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400">
-                No media yet.
               </div>
             )}
           </div>

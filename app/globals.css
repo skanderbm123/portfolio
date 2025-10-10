@@ -72,6 +72,10 @@
     @apply relative text-gray-700 dark:text-gray-200 font-medium;
   }
 
+  .hyphens-auto {
+    hyphens: auto;
+  }
+
   .nav-link::after {
     content: "";
     @apply absolute left-0 bottom-[-4px] w-0 h-[2px] bg-[#d6334f] transition-all duration-300;

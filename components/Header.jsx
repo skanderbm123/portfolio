@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
-import { assets } from "@/assets/assets";
+import { assets, headerData } from "@/assets/assets";
 import Image from "next/image";
 
 const Header = () => {
@@ -29,19 +31,52 @@ const Header = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
-        Hi! I'm Skander Ben Mekki{" "}
+        {headerData.intro}{" "}
         <Image src={assets.hand_icon} alt="" className="w-6" />
       </motion.h3>
 
       {/* Title */}
       <motion.h1
-        className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo  red-underline"
+        className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo red-underline"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.7 }}
       >
-        A Software Engineer
+        {headerData.title}
       </motion.h1>
+
+      {/* Social Icons */}
+      <motion.div
+        className="flex items-center gap-5 mt-2"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
+        <a
+          href={headerData.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:scale-110 transition-transform"
+        >
+          <Image
+            src={assets.github_icon}
+            alt="GitHub"
+            className="w-7 h-7 dark:invert"
+          />
+        </a>
+        <a
+          href={headerData.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:scale-110 transition-transform"
+        >
+          <Image
+            src={assets.linkedin_icon}
+            alt="LinkedIn"
+            className="w-7 h-7 dark:invert"
+          />
+        </a>
+      </motion.div>
 
       {/* Subtitle */}
       <motion.p
@@ -50,9 +85,7 @@ const Header = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
       >
-        who loves solving hard problems and building things that last. Currently
-        at AppDirect, where I design and deliver backend and full-stack
-        solutions that make complex systems run smoothly.
+        {headerData.subtitle}
       </motion.p>
 
       {/* Buttons */}
@@ -67,7 +100,7 @@ const Header = () => {
           className="red-btn px-10 py-3 rounded-full flex items-center gap-2"
         >
           Contact me
-          <Image src={assets.right_arrow_white} alt="profile" className="w-4" />
+          <Image src={assets.right_arrow_white} alt="arrow" className="w-4" />
         </a>
 
         <a
@@ -81,7 +114,7 @@ const Header = () => {
           My Resume
           <Image
             src={assets.download_icon}
-            alt="profile"
+            alt="download"
             className="w-5 invert-[.0] dark:invert"
           />
         </a>

@@ -90,11 +90,10 @@ const Experience = () => {
           ) => (
             <div
               key={index}
-              className="exp-card opacity-0 border border-black/10 dark:border-white/15
-                         p-8 rounded-2xl bg-white/70 dark:bg-white/[0.02]
-                         hover:bg-[var(--color-light-hover)]/15 dark:hover:bg-white/[0.08]
-                         hover:scale-[1.03] shadow-sm transition-all duration-300
-                         flex flex-col items-center text-center"
+              className="exp-card opacity-0 border border-gray-200 dark:border-white/10 
+           p-8 rounded-2xl bg-white/80 dark:bg-[#141414]/60
+           hover:scale-[1.03] shadow-md hover:shadow-lg
+           transition-all duration-300 flex flex-col items-center text-center"
             >
               <div className="w-20 h-20 rounded-xl overflow-hidden mb-5 flex items-center justify-center bg-white dark:bg-[#1a1a1a] shadow-md transition-all duration-300">
                 <Image
@@ -106,15 +105,21 @@ const Experience = () => {
                 />
               </div>
 
-              <h3 className="text-xl font-semibold font-Ovo">{company}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+              <h3 className="text-xl font-semibold font-Ovo text-gray-900 dark:text-white">
+                {company}
+              </h3>
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-1 italic">
+                {" "}
                 {title}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                 {years} • {location}
               </p>
 
-              <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              <p
+                className="text-[15px] sm:text-[16px] text-gray-800 dark:text-gray-200 
+             leading-relaxed text-justify tracking-[0.015em]"
+              >
                 {description}
               </p>
 

@@ -85,7 +85,7 @@ const About = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-center lg:items-start">
-            <p className="mb-10 max-w-xl font-Ovo text-center lg:text-left text-gray-600 dark:text-gray-300 text-[0.95rem] leading-relaxed">
+            <p className="mb-10 max-w-2xl font-Ovo text-center lg:text-justify text-gray-800 dark:text-gray-200 text-[1rem] leading-relaxed tracking-[0.015em] hyphens-auto">
               {aboutData.paragraph}
             </p>
 
