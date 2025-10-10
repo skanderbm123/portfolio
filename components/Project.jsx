@@ -137,9 +137,7 @@ const Project = () => {
             <button
               onClick={() => setSelectedProject(null)}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 text-2xl"
-            >
-              ×
-            </button>
+            ></button>
             <h2 className="text-3xl font-Ovo mb-4">{selectedProject.title}</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               {selectedProject.description ||

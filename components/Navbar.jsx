@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const HEADER_OFFSET = 90; // Adjust until perfect (80–100 is good range)
+  const HEADER_OFFSET = 50; // Adjust until perfect (80–100 is good range)
 
   const scrollToId = (e, id) => {
     e.preventDefault();
@@ -19,6 +19,7 @@ const Navbar = () => {
     const y =
       el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
     window.scrollTo({ top: y, behavior: "smooth" });
+    setTimeout(() => window.scrollTo({ top: y }), 400); // final adjust after animation
     history.replaceState(null, "", id);
   };
 

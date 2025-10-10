@@ -40,7 +40,7 @@ const Header = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.7 }}
       >
-        A Passionate Full-Stack Developer
+        A Software Engineer
       </motion.h1>
 
       {/* Subtitle */}
@@ -50,7 +50,9 @@ const Header = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
       >
-        I create modern and responsive web applications with a focus on
+        who loves solving hard problems and building things that last. Currently
+        at AppDirect, where I design and deliver backend and full-stack
+        solutions that make complex systems run smoothly.
       </motion.p>
 
       {/* Buttons */}
@@ -69,7 +71,7 @@ const Header = () => {
         </a>
 
         <a
-          href="/sample-resume.pdf"
+          href="/Skander-Ben-Mekki-Portfolio-Website.pdf"
           download
           className="px-10 py-3 border rounded-full flex items-center gap-2
                      border-black text-black hover:bg-black/[0.05]

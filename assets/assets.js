@@ -5,11 +5,6 @@ import edu_icon from "./edu-icon.png";
 import edu_icon_dark from "./edu-icon-dark.png";
 import project_icon from "./project-icon.png";
 import project_icon_dark from "./project-icon-dark.png";
-import vscode from "./vscode.png";
-import firebase from "./firebase.png";
-import figma from "./figma.png";
-import git from "./git.png";
-import mongodb from "./mongodb.png";
 import right_arrow_white from "./right-arrow-white.png";
 import logo from "./logo.png";
 import logo_dark from "./logo_dark.png";
@@ -27,10 +22,6 @@ import menu_black from "./menu-black.png";
 import menu_white from "./menu-white.png";
 import close_black from "./close-black.png";
 import close_white from "./close-white.png";
-import web_icon from "./web-icon.png";
-import mobile_icon from "./mobile-icon.png";
-import ui_icon from "./ui-icon.png";
-import graphics_icon from "./graphics-icon.png";
 import right_arrow from "./right-arrow.png";
 import send_icon from "./send-icon.png";
 import right_arrow_bold from "./right-arrow-bold.png";
@@ -44,11 +35,6 @@ export const assets = {
   edu_icon_dark,
   project_icon,
   project_icon_dark,
-  vscode,
-  firebase,
-  figma,
-  git,
-  mongodb,
   right_arrow_white,
   logo,
   logo_dark,
@@ -66,10 +52,6 @@ export const assets = {
   menu_white,
   close_black,
   close_white,
-  web_icon,
-  mobile_icon,
-  ui_icon,
-  graphics_icon,
   right_arrow,
   send_icon,
   right_arrow_bold,
@@ -78,107 +60,98 @@ export const assets = {
 
 export const workData = [
   {
-    title: "Geo-based app",
-    description: "Mobile app using GPS and map APIs.",
-    bgImage: "work-2.png",
-    images: ["geo-1.png"],
-  },
-  {
-    title: "Frontend project",
-    description: "Landing page built with Next.js & TailwindCSS.",
+    title: "Unity Game – Path to the Ninja",
+    description:
+      "A 2D action-platformer built in Unity using C#. Focused on immersive gameplay, smooth mechanics, and engaging level design that showcases creativity and strong problem-solving skills.",
     bgImage: "work-1.png",
     video: "PSYLOCKE_2024-12-10_22-32-43.mp4",
+  },
+  {
+    title: "Soccer Stats Web Application",
+    description:
+      "An open-source React app for tracking global soccer clubs, fixtures, and live stats. Developed full-stack features with Node.js, Express, and MongoDB, improving user experience with advanced search and real-time updates.",
+    bgImage: "work-2.png",
+    images: ["geo-1.png"],
   },
 ];
 
 export const experienceData = [
   {
-    logo: "/logos/appdirect.png",
+    logoLight: "icons/appdirect-icon.png",
+    logoDark: "icons/appdirect-icon-dark.png",
     company: "AppDirect",
-    title: "Full-Stack Engineer II",
+    title: "Software Engineer II – Microsoft Integration Team",
     years: "2021 – Present",
     location: "Montreal, Canada",
     description:
-      "Building scalable integrations and distributed systems using Java, Spring Boot, React, and GraphQL. Leading DevOps initiatives with CI/CD pipelines and Kubernetes deployments.",
+      "Designing and building scalable integrations between AppDirect and Microsoft services. I lead backend and DevOps initiatives using Java, Spring Boot, React, and GraphQL, ensuring reliable data synchronization and smooth CI/CD deployments.",
     link: "https://www.appdirect.com/",
   },
   {
-    logo: "/logos/desjardins.png",
-    company: "Desjardins Group",
-    title: "Software Developer Intern",
+    logoLight: "icons/deloitte.svg",
+    logoDark: "icons/deloitte-dark.png",
+    company: "Deloitte Canada",
+    title: "Software Developer",
     years: "2020 – 2021",
-    location: "Lévis, Canada",
+    location: "Montreal, Canada",
     description:
-      "Developed internal tools for the EPP team using Angular and Node.js. Improved automation and data visualization for the product management department.",
-    link: "https://www.desjardins.com/",
+      "Developed internal web tools for Deloitte’s EPP team using Angular and Node.js. Focused on improving data automation, visualization, and productivity through clean, efficient backend solutions.",
+    link: "https://www.deloitte.com/",
   },
   {
-    logo: "/logos/veeva.png",
-    company: "Veeva Systems",
-    title: "Frontend Developer (Contract)",
-    years: "2019 – 2020",
-    location: "Remote, USA",
+    logoLight: "icons/pratt.png",
+    logoDark: "icons/pratt-dark.png",
+    company: "Pratt & Whitney Canada",
+    title: "Software Developer Intern",
+    years: "2019",
+    location: "Montreal, Canada",
     description:
-      "Designed and implemented modern React components aligned with Veeva's brand. Focused on performance and accessibility for their SaaS solutions.",
-    link: "https://www.veeva.com/",
+      "Built and optimized internal software for the engineering team, improving reporting workflows and application performance. Focused on clean UI, accessibility, and reliable data handling.",
+    link: "https://www.prattwhitney.com/",
   },
 ];
-
-export const infoList = [
-  { icon: "icons/code.svg", title: "Languages", description: "HTML, CSS..." },
-  {
-    icon: "icons/education.svg",
-    title: "Education",
-    description: "B.Tech...",
-  },
-  { icon: "icons/projects.svg", title: "Projects", description: "..." },
-];
-
-export const toolsData = [
-  { name: "VSCode", src: "icons/vscode.svg" },
-  { name: "Firebase", src: "icons/firebase.svg" },
-  { name: "MongoDB", src: "icons/mongodb.svg" },
-  { name: "Figma", src: "icons/figma.svg" },
-  { name: "Git", src: "icons/git.svg" },
-];
-
-export const logos = {
-  appdirect: "logos/appdirect.png",
-  desjardins: "logos/desjardins.png",
-  veeva: "logos/veeva.png",
-};
 
 // ABOUT SECTION DATA
 export const aboutData = {
   introTitle: "Introduction",
   sectionTitle: "About Me",
-  paragraph:
-    "I'm Skander Ben Mekki, a passionate Full-Stack Developer with experience building modern, scalable web applications. I love creating products that are both functional and beautiful, blending clean code with thoughtful design.",
-
+  paragraph: `I’m a Full-Stack Developer with more than five years of professional experience in full-stack development.
+My work focuses on designing and optimizing systems using Java, Spring Boot, Node.js, React, and GraphQL, while applying best practices in CI/CD, microservices, and test-driven development.
+At AppDirect, I contribute to distributed systems built around Kafka and automation pipelines that improve reliability and reduce support costs. I’m passionate about leveraging modern tools — from Kubernetes to AI-assisted development — to help teams build faster and smarter.`,
   infoList: [
     {
       icon: "icons/code-icon.png",
-      title: "Languages",
-      description: "HTML, CSS, JavaScript, React, Next.js",
+      title: "Core Skills",
+      description:
+        "Java, Spring Boot, C#, React, Node.js, REST API, GraphQL, Docker, Kubernetes",
     },
     {
       icon: "icons/edu-icon.png",
       title: "Education",
-      description: "B.Tech in Computer Science",
+      description:
+        "Bachelor of Engineering (BEng) in Software Engineering — Concordia University, Member of the Institute of Co-op Education.",
     },
     {
       icon: "icons/project-icon.png",
-      title: "Projects",
-      description: "Built more than 5 personal projects",
+      title: "Experience",
+      description: "5+ years in backend and full-stack development",
     },
   ],
 
   toolsTitle: "Tools I use",
   toolsData: [
-    { name: "VSCode", src: "icons/vscode.png" },
-    { name: "Firebase", src: "icons/firebase.png" },
-    { name: "MongoDB", src: "icons/mongodb.png" },
-    { name: "Figma", src: "icons/figma.png" },
-    { name: "Git", src: "icons/git.png" },
+    // Backend & Infrastructure
+    { name: "Spring Boot", src: "icons/springboot.png" },
+    { name: "C#", src: "icons/csharp.png" },
+    { name: "Docker", src: "icons/docker.png" },
+    { name: "Kubernetes", src: "icons/kubernetes.png" },
+
+    // Frontend & Language
+    { name: "React", src: "icons/react.png" },
+    { name: "TypeScript", src: "icons/typescript.png" },
+
+    // Monitoring / AI
+    { name: "Datadog", src: "icons/datadog.png" },
+    { name: "ChatGPT", src: "icons/chatgpt.png" },
   ],
 };

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { experienceData, assets } from "@/assets/assets";
 
 const Experience = () => {
   const sectionRef = useRef(null);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -44,6 +45,20 @@ const Experience = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    setIsDark(document.documentElement.classList.contains("dark"));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -61,7 +76,16 @@ const Experience = () => {
       <div className="grid [grid-template-columns:var(--cols-auto)] gap-8 my-10">
         {experienceData.map(
           (
-            { logo, company, title, years, location, description, link },
+            {
+              logoLight,
+              logoDark,
+              company,
+              title,
+              years,
+              location,
+              description,
+              link,
+            },
             index
           ) => (
             <div
@@ -72,18 +96,16 @@ const Experience = () => {
                          hover:scale-[1.03] shadow-sm transition-all duration-300
                          flex flex-col items-center text-center"
             >
-              {/* Company Logo */}
-              <div className="w-20 h-20 rounded-xl overflow-hidden mb-5 flex items-center justify-center bg-white/80 dark:bg-white/10 shadow-md">
+              <div className="w-20 h-20 rounded-xl overflow-hidden mb-5 flex items-center justify-center bg-white dark:bg-[#1a1a1a] shadow-md transition-all duration-300">
                 <Image
-                  src={logo}
+                  src={isDark ? logoDark : logoLight}
                   alt={company}
                   width={60}
                   height={60}
-                  className="object-contain"
+                  className="object-contain transition-opacity duration-300"
                 />
               </div>
 
-              {/* Company Info */}
               <h3 className="text-xl font-semibold font-Ovo">{company}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
                 {title}
@@ -92,12 +114,10 @@ const Experience = () => {
                 {years} • {location}
               </p>
 
-              {/* Description */}
               <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                 {description}
               </p>
 
-              {/* Visit Website */}
               {link && (
                 <a
                   href={link}

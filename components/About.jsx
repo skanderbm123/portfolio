@@ -37,7 +37,7 @@ const About = () => {
       id="about"
       ref={sectionRef}
       className="opacity-0 translate-y-6 transition-none
-             w-full px-[10%] py-24 flex flex-col justify-center items-center
+             w-full px-[10%] py-12 flex flex-col justify-center items-center
              scroll-mt-[96px] md:scroll-mt-[100px] min-h-screen"
     >
       <div className="max-w-6xl w-full flex flex-col justify-center items-center">
@@ -48,8 +48,8 @@ const About = () => {
           {aboutData.sectionTitle}
         </h2>
 
-        <div className="flex w-full flex-col lg:flex-row items-center gap-20 mt-20">
-          <div className="w-64 sm:w-80 rounded-3xl overflow-hidden flex-shrink-0">
+        <div className="flex w-full flex-col lg:flex-row items-center gap-20 mt-12">
+          <div className="w-64 sm:w-85 rounded-3xl overflow-hidden flex-shrink-0">
             <Image
               src={assets.user_image}
               alt="Skander Ben Mekki"
@@ -58,7 +58,7 @@ const About = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-center lg:items-start">
-            <p className="mb-10 max-w-2xl font-Ovo text-center lg:text-left">
+            <p className="mb-10 max-w-xl font-Ovo text-center lg:text-left text-gray-600 dark:text-gray-300 text-[0.95rem] leading-relaxed">
               {aboutData.paragraph}
             </p>
 
