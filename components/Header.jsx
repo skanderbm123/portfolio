@@ -4,6 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { assets, headerData } from "@/assets/assets";
 import Image from "next/image";
+const basePath =
+  process.env.NODE_ENV === "production" ? "/Skander-Ben-Mekki-Portfolio" : "";
 
 const Header = () => {
   return (
@@ -104,19 +106,16 @@ const Header = () => {
         </a>
 
         <a
-          href="/Skander-Ben-Mekki-Portfolio-Website.pdf"
+          href={`${basePath}/Skander-Ben-Mekki-Portfolio-Website.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
           download
           className="px-10 py-3 border rounded-full flex items-center gap-2
-                     border-black text-black hover:bg-black/[0.05]
-                     dark:border-white/25 dark:text-white dark:hover:bg-white/10
-                     transition-all duration-300 hover:scale-105"
+             border-black text-black hover:bg-black/[0.05]
+             dark:border-white/25 dark:text-white dark:hover:bg-white/10
+             transition-all duration-300 hover:scale-105"
         >
           My Resume
-          <Image
-            src={assets.download_icon}
-            alt="download"
-            className="w-5 invert-[.0] dark:invert"
-          />
         </a>
       </motion.div>
     </section>

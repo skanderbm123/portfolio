@@ -195,10 +195,10 @@ export const experienceData = [
 export const aboutData = {
   introTitle: "Introduction",
   sectionTitle: "About Me",
-  paragraph: `I’m a Software Engineer with a Bachelor’s in Software Engineering from Concordia University. I’m passionate about full-stack development — there’s nothing more rewarding than seeing backend logic come alive through a clean, intuitive UI.
+  paragraph: `I’m a Software Engineer with a Bachelor’s in Software Engineering from Concordia University. I’m passionate about full-stack development, there’s nothing more rewarding than seeing backend logic come alive through a clean, intuitive UI.
 I’ve worked across the entire development lifecycle, from system design to deployment, focusing on building scalable and maintainable solutions. I enjoy solving complex problems with simple, elegant code.
 When I’m not coding, you’ll likely find me cooking, gaming, or exploring new places. Always learning, always creating.
-Feel free to reach out — I’m always open to a good conversation about tech, creativity, or anything in between!`,
+Feel free to reach out! I’m always open to a good conversation about tech, creativity, or anything in between!`,
   infoList: [
     {
       icon: "icons/code-icon.png",
