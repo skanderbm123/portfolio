@@ -73,7 +73,7 @@ const Experience = () => {
         Companies I’ve worked and collaborated with:
       </p>
 
-      <div className="grid [grid-template-columns:var(--cols-auto)] gap-8 my-10">
+      <div className="grid md:grid-cols-2 [grid-template-columns:var(--cols-auto)] gap-8 my-10">
         {experienceData.map(
           (
             {

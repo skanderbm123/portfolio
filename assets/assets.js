@@ -61,17 +61,43 @@ export const assets = {
 export const workData = [
   {
     title: "Unity Game – Path to the Ninja",
-    description:
-      "A 2D action-platformer built in Unity using C#. Focused on immersive gameplay, smooth mechanics, and engaging level design that showcases creativity and strong problem-solving skills.",
+    cardInfo:
+      "2D action-platformer built in Unity using C#, featuring physics-based combat and smooth gameplay.",
+    description: [
+      "A 2D action-platformer built in Unity using C#.",
+      "Designed immersive levels with progressive enemy AI.",
+      "Implemented particle effects and physics-driven animations.",
+    ],
     bgImage: "work-1.png",
     video: "PSYLOCKE_2024-12-10_22-32-43.mp4",
   },
   {
     title: "Soccer Stats Web Application",
-    description:
-      "An open-source React app for tracking global soccer clubs, fixtures, and live stats. Developed full-stack features with Node.js, Express, and MongoDB, improving user experience with advanced search and real-time updates.",
-    bgImage: "work-2.png",
-    images: ["geo-1.png"],
+    cardInfo:
+      "Full-stack React + Node.js app for live soccer stats, standings, and match insights.",
+    description: [
+      "An open-source full-stack React + Node.js app to explore global soccer leagues and player data.",
+      "Dynamic team standings and player stats synced with MongoDB.",
+      "View completed and upcoming fixtures, live scores, and match formations (4-3-3, 4-2-3-1, etc.).",
+      "Player detail pages show stats and past matches, accessible in a dedicated tab.",
+    ],
+    bgImage: "soccer-stats-card.png",
+    images: [
+      { src: "soccer-stats-1.png", caption: "League standings and team view" },
+      { src: "soccer-stats-2.png", caption: "Player statistics page" },
+      {
+        src: "soccer-stats-3.png",
+        caption: "Live scores (updating in real-time)",
+      },
+      {
+        src: "soccer-stats-4.png",
+        caption: "Fixtures and match details",
+      },
+      {
+        src: "soccer-stats-5.png",
+        caption: "Fixtures and match details",
+      },
+    ],
   },
 ];
 
@@ -108,6 +134,17 @@ export const experienceData = [
     description:
       "Built and optimized internal software for the engineering team, improving reporting workflows and application performance. Focused on clean UI, accessibility, and reliable data handling.",
     link: "https://www.prattwhitney.com/",
+  },
+  {
+    logoLight: "icons/upland.png",
+    logoDark: "icons/upland-dark.png",
+    company: "Upland (Formerly - Cimpl)",
+    title: "Quality Assurance Intern",
+    years: "2017",
+    location: "Montreal, Canada",
+    description:
+      "Supported the QA team by generating detailed reports for Scrum meetings and tracking product quality metrics. Helped identify and document defects, ensuring compliance with company testing standards and continuous improvement of product reliability.",
+    link: "https://uplandsoftware.com/cimpl/",
   },
 ];
 
