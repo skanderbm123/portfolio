@@ -4,8 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { assets, headerData } from "@/assets/assets";
 import Image from "next/image";
-const basePath =
-  process.env.NODE_ENV === "production" ? "/Skander-Ben-Mekki-Portfolio" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
 
 const Header = () => {
   return (
@@ -116,6 +115,11 @@ const Header = () => {
              transition-all duration-300 hover:scale-105"
         >
           My Resume
+          <Image
+            src={assets.download_icon}
+            alt="download"
+            className="w-5 invert-[.0] dark:invert"
+          />
         </a>
       </motion.div>
     </section>
