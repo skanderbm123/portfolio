@@ -2,14 +2,14 @@
 
 import { motion } from "framer-motion";
 
-export default function Reveal({ children, delay = 0, y = 24, className, as = "div", ...rest }) {
+export default function Reveal({ children, delay = 0, y = 30, rotate = 0, className, as = "div", ...rest }) {
   const Tag = motion[as];
   return (
     <Tag
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y, rotate: rotate - 2 }}
+      whileInView={{ opacity: 1, y: 0, rotate }}
+      viewport={{ once: true, margin: "0px 0px -60px 0px" }}
+      transition={{ type: "spring", stiffness: 140, damping: 18, delay }}
       className={className}
       {...rest}
     >
