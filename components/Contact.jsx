@@ -4,12 +4,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { profile } from "@/lib/data";
 import { asset } from "@/lib/asset";
+import { Burst } from "./Deco";
 import SectionHeading from "./SectionHeading";
 
 const WEB3FORMS_KEY = "bb729fc3-b82b-4de5-ac26-bcb82f1203d8";
 
 const field =
-  "w-full rounded-xl border border-line bg-surface px-4 py-3 outline-none transition placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/30";
+  "w-full rounded-xl border-[2.5px] border-ink bg-cream px-4 py-3 font-medium outline-none transition placeholder:text-ink/40 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_var(--ink)]";
 
 export default function Contact() {
   const [status, setStatus] = useState({ state: "idle", message: "" });
@@ -17,7 +18,7 @@ export default function Contact() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    setStatus({ state: "sending", message: "Sending…" });
+    setStatus({ state: "sending", message: "" });
     try {
       const body = new FormData(form);
       body.append("access_key", WEB3FORMS_KEY);
@@ -26,89 +27,63 @@ export default function Contact() {
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
       form.reset();
-      setStatus({ state: "ok", message: "Thanks. Your message is on its way, and I'll get back to you soon." });
+      setStatus({ state: "ok", message: "Message sent! I'll get back to you soon 🎉" });
     } catch {
-      setStatus({ state: "error", message: "Something went wrong. Please try again, or reach out on LinkedIn." });
+      setStatus({ state: "error", message: "Oops, that didn't go through. Try again, or ping me on LinkedIn." });
     }
   };
 
   return (
-    <section id="contact" className="px-5 py-24 sm:px-8 sm:py-32">
+    <section id="contact" className="px-5 py-20 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="05" label="Contact" title="Let's build something that lasts.">
-          Whether it's an opportunity, a question about my work, or just a good conversation about tech, my inbox is open.
+        <SectionHeading label="Contact" color="tangerine" title={<>Let's <span className="marker">talk</span>!</>}>
+          An opportunity, a question about my work, or just a good chat about tech, creativity or anything in between.
         </SectionHeading>
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="space-y-3"
-          >
+        <div className="brut relative grid gap-10 rounded-[2rem] bg-accent p-6 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+          <Burst className="absolute -right-4 -top-10 z-10 hidden h-28 w-28 rotate-12 sm:grid" fill="var(--accent-2)">
+            <p className="font-pixel text-2xl font-bold leading-none">hi!</p>
+          </Burst>
+
+          <div className="space-y-4">
+            <p className="text-2xl font-extrabold leading-tight">Find me around the internet</p>
             {[
-              { label: "LinkedIn", value: "skander-ben-mekki", href: profile.linkedin },
-              { label: "GitHub", value: "skanderbm123", href: profile.github },
-              { label: "Resume", value: "Download PDF", href: asset(profile.resume) },
+              { label: "LinkedIn", value: "skander-ben-mekki", href: profile.linkedin, cls: "bg-sky" },
+              { label: "GitHub", value: "skanderbm123", href: profile.github, cls: "bg-ink text-cream" },
+              { label: "Resume", value: "Download the PDF", href: asset(profile.resume), cls: "bg-pink" },
             ].map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card group flex items-center justify-between p-5 transition hover:border-accent"
-              >
+              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className={`brut press flex items-center justify-between rounded-2xl px-5 py-4 ${l.cls}`}>
                 <span>
-                  <span className="eyebrow block">{l.label}</span>
-                  <span className="mt-1 block font-medium">{l.value}</span>
+                  <span className="block font-pixel text-sm opacity-80">{l.label}</span>
+                  <span className="block text-lg font-extrabold">{l.value}</span>
                 </span>
-                <span aria-hidden className="text-xl text-muted transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent">↗</span>
+                <span aria-hidden className="text-2xl">↗</span>
               </a>
             ))}
-            <p className="pt-3 text-sm text-muted">Based in {profile.location}.</p>
-          </motion.div>
+            <p className="pt-2 font-bold">📍 {profile.location}</p>
+          </div>
 
-          <motion.form
-            onSubmit={onSubmit}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="card space-y-4 p-6 sm:p-8"
-          >
+          <motion.form onSubmit={onSubmit} className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
-                <span className="eyebrow mb-2 block">Name</span>
+                <span className="mb-1.5 block font-pixel text-sm">Your name</span>
                 <input name="name" type="text" required autoComplete="name" placeholder="Ada Lovelace" className={field} />
               </label>
               <label className="block">
-                <span className="eyebrow mb-2 block">Email</span>
+                <span className="mb-1.5 block font-pixel text-sm">Your email</span>
                 <input name="email" type="email" required autoComplete="email" placeholder="ada@example.com" className={field} />
               </label>
             </div>
             <label className="block">
-              <span className="eyebrow mb-2 block">Message</span>
-              <textarea name="message" rows={6} required placeholder="What are you working on?" className={`${field} resize-y`} />
+              <span className="mb-1.5 block font-pixel text-sm">Message</span>
+              <textarea name="message" rows={6} required placeholder="What's on your mind?" className={`${field} resize-y`} />
             </label>
-            {/* honeypot for bots */}
             <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
             <div className="flex flex-wrap items-center gap-4">
-              <button
-                type="submit"
-                disabled={status.state === "sending"}
-                className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 font-medium text-accent-ink transition hover:brightness-110 disabled:opacity-60"
-              >
-                {status.state === "sending" ? "Sending…" : "Send message"}
-                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              <button type="submit" disabled={status.state === "sending"} className="brut press rounded-2xl bg-pink px-8 py-3.5 text-lg font-extrabold disabled:opacity-60">
+                {status.state === "sending" ? "Sending…" : "Send it →"}
               </button>
-              <p
-                role="status"
-                aria-live="polite"
-                className={`text-sm ${status.state === "error" ? "text-[#ff6b6b]" : "text-muted"}`}
-              >
-                {status.state === "sending" ? "" : status.message}
-              </p>
+              <p role="status" aria-live="polite" className="font-bold">{status.message}</p>
             </div>
           </motion.form>
         </div>

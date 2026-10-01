@@ -5,24 +5,9 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { projects } from "@/lib/data";
 import { asset } from "@/lib/asset";
+import { bg } from "@/lib/colors";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-
-function Shot({ project, src, className = "" }) {
-  // Screenshots with wide white margins are zoomed to the content.
-  return (
-    <div className={`overflow-hidden bg-white ${className}`}>
-      <Image
-        src={asset(src)}
-        alt=""
-        fill
-        sizes="(min-width: 1024px) 640px, 90vw"
-        className="object-cover"
-        style={{ transform: `scale(${project.zoom})` }}
-      />
-    </div>
-  );
-}
 
 function Lightbox({ project, onClose }) {
   const [i, setI] = useState(0);
@@ -58,54 +43,39 @@ function Lightbox({ project, onClose }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-[80] grid place-items-center bg-black/80 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-[80] grid place-items-center bg-ink/70 p-4"
     >
       <motion.div
-        initial={{ scale: 0.94, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.96, y: 10 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        initial={{ scale: 0.8, rotate: -4, y: 40 }}
+        animate={{ scale: 1, rotate: 0, y: 0 }}
+        exit={{ scale: 0.9, y: 20, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-5xl overflow-hidden rounded-2xl border border-line-strong bg-surface"
+        className={`brut w-full max-w-5xl overflow-hidden rounded-3xl ${bg[project.color]}`}
       >
-        <div className="flex items-center justify-between border-b border-line px-5 py-3">
-          <p className="font-medium">{project.title}</p>
+        <div className="flex items-center justify-between px-5 py-3">
+          <p className="text-lg font-extrabold">{project.title}</p>
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-muted">
-              {i + 1} / {n}
-            </span>
-            <button ref={closeRef} onClick={onClose} aria-label="Close gallery" className="grid h-8 w-8 place-items-center rounded-full hover:bg-surface-2">
+            <span className="brut-sm rounded-full bg-cream px-3 py-0.5 font-pixel text-sm">{i + 1} / {n}</span>
+            <button ref={closeRef} onClick={onClose} aria-label="Close gallery" className="brut-sm press grid h-9 w-9 place-items-center rounded-full bg-cream font-bold">
               ✕
             </button>
           </div>
         </div>
-        <div className="relative aspect-[16/9] bg-black">
+        <div className="relative mx-4 aspect-[16/9] overflow-hidden border-[2.5px] border-ink bg-white">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={m.src}
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -24 }}
-              transition={{ duration: 0.22 }}
-              className="absolute inset-0"
-            >
+            <motion.div key={m.src} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.2 }} className="absolute inset-0">
               <Image src={asset(m.src)} alt={m.caption} fill sizes="1024px" className="object-contain" />
             </motion.div>
           </AnimatePresence>
           {n > 1 && (
             <>
-              <button onClick={() => go(-1)} aria-label="Previous image" className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-bg/80 backdrop-blur hover:bg-bg">
-                ←
-              </button>
-              <button onClick={() => go(1)} aria-label="Next image" className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-bg/80 backdrop-blur hover:bg-bg">
-                →
-              </button>
+              <button onClick={() => go(-1)} aria-label="Previous image" className="brut-sm press absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-cream text-lg font-bold">←</button>
+              <button onClick={() => go(1)} aria-label="Next image" className="brut-sm press absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-cream text-lg font-bold">→</button>
             </>
           )}
         </div>
-        <p className="px-5 py-3 text-sm text-muted" aria-live="polite">
-          {m.caption}
-        </p>
+        <p className="px-5 py-4 font-bold" aria-live="polite">{m.caption}</p>
       </motion.div>
     </motion.div>
   );
@@ -114,49 +84,53 @@ function Lightbox({ project, onClose }) {
 function ProjectCard({ project, index, onOpen }) {
   const flip = index % 2 === 1;
   return (
-    <Reveal className="card grid overflow-hidden lg:grid-cols-2">
-      <button
+    <Reveal rotate={flip ? 0.6 : -0.6} className={`brut grid gap-8 rounded-[2rem] p-5 sm:p-8 lg:grid-cols-2 lg:items-center lg:gap-12 ${bg[project.color]}`}>
+      <motion.button
         onClick={onOpen}
         aria-label={`Open ${project.title} gallery`}
-        className={`group relative block aspect-[16/10] w-full overflow-hidden border-b border-line text-left lg:aspect-auto lg:min-h-[22rem] lg:border-b-0 ${
-          flip ? "lg:order-2 lg:border-l" : "lg:border-r"
-        }`}
+        whileHover={{ rotate: flip ? -2 : 2, scale: 1.02 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+        className={`brut group relative block aspect-[16/10] w-full overflow-hidden rounded-2xl bg-white text-left ${flip ? "lg:order-2" : ""}`}
       >
-        <Shot project={project} src={project.media[0].src} className="absolute inset-0 transition duration-700 group-hover:scale-[1.04]" />
-        <span className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition group-hover:opacity-100" />
-        <span className="absolute bottom-4 left-4 rounded-full bg-bg/85 px-3.5 py-1.5 font-mono text-xs backdrop-blur transition group-hover:bg-accent group-hover:text-accent-ink">
-          View gallery · {project.media.length} images
+        <div className="absolute inset-0 overflow-hidden bg-white">
+          <Image
+            src={asset(project.media[0].src)}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 560px, 90vw"
+            className="object-cover"
+            style={{ transform: `scale(${project.zoom})` }}
+          />
+        </div>
+        <span className="brut-sm absolute bottom-3 left-3 rounded-full bg-cream px-3.5 py-1.5 text-sm font-extrabold transition group-hover:bg-accent">
+          📸 {project.media.length} screenshots
         </span>
-      </button>
+      </motion.button>
 
-      <div className="flex flex-col p-6 sm:p-9">
-        <p className="eyebrow">{project.kind}</p>
-        <h3 className="mt-3 text-3xl font-semibold tracking-tight">{project.title}</h3>
-        <p className="mt-4 text-muted">{project.summary}</p>
-        <ul className="mt-5 space-y-2.5 text-[15px] leading-relaxed text-muted">
+      <div>
+        <span className="brut-sm inline-block -rotate-2 rounded-full bg-ink px-3 py-1 font-pixel text-sm text-cream">{project.badge}</span>
+        <h3 className="mt-3 text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">{project.title}</h3>
+        <p className="mt-1 text-sm font-bold text-ink/70">{project.kind}</p>
+        <p className="mt-4 text-lg font-semibold leading-snug">{project.summary}</p>
+        <ul className="mt-4 space-y-2 font-medium leading-snug">
           {project.highlights.map((h) => (
             <li key={h} className="flex gap-3">
-              <span aria-hidden className="mt-[0.6em] h-1 w-3 shrink-0 rounded-full bg-accent/70" />
+              <span aria-hidden className="mt-[0.35em] h-3 w-3 shrink-0 rotate-12 border-2 border-ink bg-cream" />
               <span>{h}</span>
             </li>
           ))}
         </ul>
-        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
+        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
           {project.tags.map((t) => (
-            <li key={t} className="rounded-full border border-line bg-surface-2/60 px-3 py-1 font-mono text-xs text-muted">
-              {t}
-            </li>
+            <li key={t} className="brut-sm rounded-full bg-cream px-3 py-1 text-sm font-bold">{t}</li>
           ))}
         </ul>
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group/link mt-auto inline-flex w-fit items-center gap-2 pt-8 font-medium text-accent"
-        >
-          <span className="border-b border-accent/40 pb-0.5 transition group-hover/link:border-accent">View source on GitHub</span>
-          <span aria-hidden className="transition group-hover/link:translate-x-1">↗</span>
-        </a>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <button onClick={onOpen} className="brut-sm press rounded-xl bg-cream px-5 py-2.5 font-extrabold">Open gallery</button>
+          <a href={project.github} target="_blank" rel="noopener noreferrer" className="brut-sm press rounded-xl bg-ink px-5 py-2.5 font-extrabold text-cream">
+            View on GitHub ↗
+          </a>
+        </div>
       </div>
     </Reveal>
   );
@@ -167,13 +141,13 @@ export default function Work() {
   const close = useCallback(() => setOpen(null), []);
 
   return (
-    <section id="work" className="px-5 py-24 sm:px-8 sm:py-32">
+    <section id="work" className="px-5 py-20 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="03" label="Selected work" title="Things I build on my own time.">
-          Personal projects where I own the whole stack, from data layer to the last pixel.
+        <SectionHeading label="Side quests" color="sky" title={<>Stuff I've <span className="marker">built</span> for fun</>}>
+          Personal projects where I own the whole thing, from the database to the last pixel (and the ninja).
         </SectionHeading>
 
-        <div className="space-y-8">
+        <div className="space-y-12">
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} onOpen={() => setOpen(p)} />
           ))}

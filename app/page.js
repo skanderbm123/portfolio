@@ -1,4 +1,4 @@
-import Background from "@/components/Background";
+import Marquee from "@/components/Marquee";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -14,14 +14,14 @@ export default function Home() {
     <MotionProvider>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-accent-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:font-bold focus:text-ink focus:brut-sm"
       >
         Skip to content
       </a>
-      <Background />
       <Nav />
       <main id="main">
         <Hero />
+        <Marquee />
         <About />
         <Experience />
         <Work />
