@@ -1,29 +1,16 @@
-/** @type {import('next').NextConfig} */
 // next.config.mjs
-
-const isGhPages = process.env.GITHUB_PAGES === 'true';
-const repo = 'portfolio'; // <-- change to your repo name if different
+const isGhPages = process.env.GITHUB_PAGES === "true";
+const repo = "portfolio";
+const basePath = isGhPages ? `/${repo}` : "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // GitHub Pages only supports static sites → we must export
-  output: 'export',
-
-  // Prevents errors with next/image (GH Pages has no server optimizer)
-  images: {
-    unoptimized: true,
-  },
-
-  // Ensures routes like /about/ map to about/index.html in /out
+  // GitHub Pages only supports static sites, so we export.
+  output: "export",
+  images: { unoptimized: true },
   trailingSlash: true,
-
-  // Use basePath + assetPrefix only when deploying under /<repo-name>
-  ...(isGhPages
-    ? {
-        basePath: `/${repo}`,
-        assetPrefix: `/${repo}/`,
-      }
-    : {}),
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  ...(isGhPages ? { basePath, assetPrefix: `${basePath}/` } : {}),
 };
 
 export default nextConfig;

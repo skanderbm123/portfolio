@@ -1,131 +1,118 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import { assets } from "@/assets/assets";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { profile } from "@/lib/data";
+import { asset } from "@/lib/asset";
+import SectionHeading from "./SectionHeading";
 
-const Contact = () => {
-  const [result, setResult] = useState("");
-  const sectionRef = useRef(null);
+const WEB3FORMS_KEY = "bb729fc3-b82b-4de5-ac26-bcb82f1203d8";
 
-  // Animate section on scroll
-  useEffect(() => {
-    const section = sectionRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const items = section.querySelectorAll(".contact-animate");
-            items.forEach((el, i) => {
-              setTimeout(() => {
-                el.classList.add("animate-contact-in");
-              }, i * 200);
-            });
-          } else {
-            section
-              .querySelectorAll(".contact-animate")
-              .forEach((el) => el.classList.remove("animate-contact-in"));
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+const field =
+  "w-full rounded-xl border border-line bg-surface px-4 py-3 outline-none transition placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/30";
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    setResult("Sending...");
-    const formData = new FormData(event.target);
-    formData.append("access_key", "bb729fc3-b82b-4de5-ac26-bcb82f1203d8");
+export default function Contact() {
+  const [status, setStatus] = useState({ state: "idle", message: "" });
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await response.json();
-    if (data.success) {
-      setResult("Message sent successfully 🎉");
-      event.target.reset();
-    } else {
-      setResult("Something went wrong. Try again later.");
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus({ state: "sending", message: "Sending…" });
+    try {
+      const body = new FormData(form);
+      body.append("access_key", WEB3FORMS_KEY);
+      body.append("subject", "New message from your portfolio");
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+      form.reset();
+      setStatus({ state: "ok", message: "Thanks. Your message is on its way, and I'll get back to you soon." });
+    } catch {
+      setStatus({ state: "error", message: "Something went wrong. Please try again, or reach out on LinkedIn." });
     }
-
-    setTimeout(() => setResult(""), 4000);
   };
 
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="relative w-full px-[12%] py-20 scroll-mt-20 overflow-hidden"
-    >
-      <h4 className="contact-animate opacity-0 text-center mb-2 text-lg font-Ovo">
-        Connect with me
-      </h4>
-      <h2 className="red-underline contact-animate opacity-0 text-center text-5xl font-Ovo">
-        Get in touch
-      </h2>
-      <p className="contact-animate opacity-0 text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">
-        I'd love to hear from you! Whether you have a question or just want to
-        say hi, feel free to drop a message.
-      </p>
+    <section id="contact" className="px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading index="05" label="Contact" title="Let's build something that lasts.">
+          Whether it's an opportunity, a question about my work, or just a good conversation about tech, my inbox is open.
+        </SectionHeading>
 
-      <form
-        className="contact-animate opacity-0 max-w-2xl mx-auto"
-        onSubmit={onSubmit}
-      >
-        <div className="grid [grid-template-columns:var(--cols-auto)] gap-6 mt-10 mb-8">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-            className="flex-1 p-3 outline-none border border-gray-300 rounded-md transition-all
-                     focus:ring-2 focus:ring-[var(--color-light-hover)] focus:scale-[1.02]
-                     bg-white/70 dark:bg-white/[0.08] dark:border-white/20 dark:text-white"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required
-            className="flex-1 p-3 outline-none border border-gray-300 rounded-md transition-all
-                     focus:ring-2 focus:ring-[var(--color-light-hover)] focus:scale-[1.02]
-                     bg-white/70 dark:bg-white/[0.08] dark:border-white/20 dark:text-white"
-          />
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="space-y-3"
+          >
+            {[
+              { label: "LinkedIn", value: "skander-ben-mekki", href: profile.linkedin },
+              { label: "GitHub", value: "skanderbm123", href: profile.github },
+              { label: "Resume", value: "Download PDF", href: asset(profile.resume) },
+            ].map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group flex items-center justify-between p-5 transition hover:border-accent"
+              >
+                <span>
+                  <span className="eyebrow block">{l.label}</span>
+                  <span className="mt-1 block font-medium">{l.value}</span>
+                </span>
+                <span aria-hidden className="text-xl text-muted transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent">↗</span>
+              </a>
+            ))}
+            <p className="pt-3 text-sm text-muted">Based in {profile.location}.</p>
+          </motion.div>
+
+          <motion.form
+            onSubmit={onSubmit}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="card space-y-4 p-6 sm:p-8"
+          >
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="eyebrow mb-2 block">Name</span>
+                <input name="name" type="text" required autoComplete="name" placeholder="Ada Lovelace" className={field} />
+              </label>
+              <label className="block">
+                <span className="eyebrow mb-2 block">Email</span>
+                <input name="email" type="email" required autoComplete="email" placeholder="ada@example.com" className={field} />
+              </label>
+            </div>
+            <label className="block">
+              <span className="eyebrow mb-2 block">Message</span>
+              <textarea name="message" rows={6} required placeholder="What are you working on?" className={`${field} resize-y`} />
+            </label>
+            {/* honeypot for bots */}
+            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                type="submit"
+                disabled={status.state === "sending"}
+                className="group inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 font-medium text-accent-ink transition hover:brightness-110 disabled:opacity-60"
+              >
+                {status.state === "sending" ? "Sending…" : "Send message"}
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </button>
+              <p
+                role="status"
+                aria-live="polite"
+                className={`text-sm ${status.state === "error" ? "text-[#ff6b6b]" : "text-muted"}`}
+              >
+                {status.state === "sending" ? "" : status.message}
+              </p>
+            </div>
+          </motion.form>
         </div>
-
-        <textarea
-          name="message"
-          rows="6"
-          placeholder="Your Message"
-          required
-          className="w-full p-4 outline-none border border-gray-300 rounded-md mb-4 transition-all
-                   focus:ring-2 focus:ring-[var(--color-light-hover)] focus:scale-[1.02]
-                   bg-white/70 dark:bg-white/[0.08] dark:border-white/20 dark:text-white"
-        ></textarea>
-
-        <button
-          type="submit"
-          className="contact-animate opacity-0 py-3 px-8 w-max flex items-center justify-between gap-2
-                    text-white rounded-full mx-auto hover:scale-110 duration-300
-                   bg-[#d63b44] text-white border border-[#b82f38] 
-             font-medium px-5 py-2 rounded-full 
-             hover:bg-[#b82f38] hover:shadow-[0_4px_14px_rgba(214,59,68,0.35)]"
-        >
-          Send Message
-          <Image src={assets.right_arrow_white} alt="send" className="w-5" />
-        </button>
-
-        <p className="text-center text-sm text-gray-500 mt-6 font-Ovo">
-          {result}
-        </p>
-      </form>
+      </div>
     </section>
   );
-};
-
-export default Contact;
+}
