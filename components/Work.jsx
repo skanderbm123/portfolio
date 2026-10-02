@@ -43,7 +43,7 @@ function Lightbox({ project, onClose }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-[80] grid place-items-center bg-ink/70 p-4"
+      className="fixed inset-0 z-[80] grid place-items-center bg-black/70 p-4"
     >
       <motion.div
         initial={{ scale: 0.8, rotate: -4, y: 40 }}
@@ -110,7 +110,7 @@ function ProjectCard({ project, index, onOpen }) {
       <div>
         <span className="brut-sm inline-block -rotate-2 rounded-full bg-ink px-3 py-1 font-pixel text-sm text-cream">{project.badge}</span>
         <h3 className="mt-3 text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">{project.title}</h3>
-        <p className="mt-1 text-sm font-bold text-ink/70">{project.kind}</p>
+        <p className="mt-1 text-sm font-bold text-[#151515]/70">{project.kind}</p>
         <p className="mt-4 text-lg font-semibold leading-snug">{project.summary}</p>
         <ul className="mt-4 space-y-2 font-medium leading-snug">
           {project.highlights.map((h) => (

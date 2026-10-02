@@ -2,7 +2,7 @@ import { profile } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t-[3px] border-ink bg-ink px-5 py-12 text-cream sm:px-8">
+    <footer className="mt-10 border-t-[3px] border-ink bg-[#0c0a12] px-5 py-12 text-[#fff4dc] sm:px-8">
       <div className="mx-auto max-w-6xl">
         <p className="text-[clamp(2.5rem,9vw,6.5rem)] font-extrabold leading-none tracking-tight">
           Thanks for <span className="text-accent">scrolling</span>!

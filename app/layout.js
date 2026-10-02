@@ -14,10 +14,15 @@ export const metadata = {
   openGraph: { title: "Skander Ben Mekki — Software Engineer", description, type: "website" },
 };
 
-export const viewport = { themeColor: "#fff4dc" };
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fff4dc" },
+    { media: "(prefers-color-scheme: dark)", color: "#16131d" },
+  ],
+};
 
-// Restores the saved mood before paint so the page never flashes the default.
-const moodScript = `(function(){try{var m=localStorage.getItem("mood");if(m)document.documentElement.dataset.mood=m}catch(e){}})()`;
+// Restores the saved mood and theme (or the system preference) before paint so nothing flashes.
+const moodScript = `(function(){var d=document.documentElement;try{var m=localStorage.getItem("mood");if(m)d.dataset.mood=m;var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";d.dataset.theme=t}catch(e){}})()`;
 
 export default function RootLayout({ children }) {
   return (

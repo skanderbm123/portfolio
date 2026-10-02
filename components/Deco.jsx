@@ -12,7 +12,7 @@ export function Burst({ className = "", fill = "var(--accent-2)", children }) {
       <svg viewBox="0 0 100 100" className="spin-slow absolute inset-0 h-full w-full" aria-hidden>
         <polygon points={pts} fill={fill} stroke="var(--ink)" strokeWidth="2.5" strokeLinejoin="round" />
       </svg>
-      <div className="relative text-center">{children}</div>
+      <div className="relative text-center text-[#151515]">{children}</div>
     </div>
   );
 }

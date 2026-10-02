@@ -17,7 +17,7 @@ export default function Marquee() {
   );
   return (
     <div className="relative z-10 py-8">
-      <div className="marquee -rotate-1 overflow-hidden border-y-[3px] border-ink bg-sun py-4 shadow-[0_6px_0_var(--ink)]">
+      <div className="marquee -rotate-1 overflow-hidden border-y-[3px] border-ink bg-sun py-4 text-[#151515] shadow-[0_6px_0_var(--ink)]">
         <div className="marquee-track flex">
           {row("a")}
           {row("b")}
