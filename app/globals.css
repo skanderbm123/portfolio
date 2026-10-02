@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
 /* "Moods" swap the page color and the main accent: <html data-mood="sunny|bubblegum|mint|grape"> */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* --ink is the "foreground + outline" color: near-black in light mode, warm cream in dark mode.
+   --cream is the card surface. Bright colored surfaces always force dark text (see below). */
 :root {
   color-scheme: light;
   --ink: #151515;
+  --cream: #fffaf0;
+  --dot: rgba(21, 21, 21, 0.13);
   --paper: #fff4dc;
   --accent: #ffd23f;
   --accent-2: #ff5ca8;
@@ -11,6 +17,17 @@
 [data-mood="bubblegum"] { --paper: #ffe7f2; --accent: #ff5ca8; --accent-2: #4f8bff; }
 [data-mood="mint"]      { --paper: #e3fff3; --accent: #2ee6a6; --accent-2: #ff7a3d; }
 [data-mood="grape"]     { --paper: #efe8ff; --accent: #b79cff; --accent-2: #ffd23f; }
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f6eedb;
+  --cream: #221f2c;
+  --dot: rgba(255, 255, 255, 0.08);
+  --paper: #16131d;
+}
+[data-theme="dark"][data-mood="bubblegum"] { --paper: #1e121b; }
+[data-theme="dark"][data-mood="mint"]      { --paper: #0e1a16; }
+[data-theme="dark"][data-mood="grape"]     { --paper: #17122b; }
 
 @theme inline {
   --color-ink: var(--ink);
@@ -23,7 +40,7 @@
   --color-mint: #2ee6a6;
   --color-tangerine: #ff7a3d;
   --color-grape: #b79cff;
-  --color-cream: #fffaf0;
+  --color-cream: var(--cream);
   --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
   --font-pixel: var(--font-pixel), ui-monospace, monospace;
@@ -38,7 +55,7 @@ html {
 body {
   background-color: var(--paper);
   /* subtle polka dots */
-  background-image: radial-gradient(rgba(21, 21, 21, 0.13) 1.4px, transparent 1.4px);
+  background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px);
   background-size: 26px 26px;
   color: var(--ink);
   font-family: var(--font-sans);
@@ -60,6 +77,17 @@ body {
 
 main {
   overflow-x: clip;
+}
+
+/* Bright surfaces keep dark text in both themes; card surfaces follow the theme foreground. */
+.bg-pink, .bg-sun, .bg-sky, .bg-mint, .bg-tangerine, .bg-grape, .bg-accent {
+  color: #151515;
+}
+.bg-cream { color: var(--ink); }
+.bg-ink { color: var(--cream); }
+
+[data-theme="dark"] .marker {
+  background: linear-gradient(transparent 55%, color-mix(in srgb, var(--accent) 50%, transparent) 55%, color-mix(in srgb, var(--accent) 50%, transparent) 92%, transparent 92%);
 }
 
 /* Chunky outlined surface with a hard offset shadow */

@@ -40,8 +40,37 @@ function MoodButton() {
       className="brut-sm grid h-10 w-10 place-items-center rounded-full"
       style={{ background: moods[i].color }}
     >
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--ink)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#151515" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
+      </svg>
+    </motion.button>
+  );
+}
+
+function ThemeButton() {
+  const toggle = () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+  };
+  return (
+    <motion.button
+      onClick={toggle}
+      whileTap={{ scale: 0.8, rotate: -90 }}
+      whileHover={{ rotate: -20 }}
+      aria-label="Switch between light and dark mode"
+      title="Light / dark"
+      className="brut-sm grid h-10 w-10 place-items-center rounded-full bg-cream"
+    >
+      {/* sun in dark mode (click for light), moon in light mode */}
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="hidden dark:block">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+      </svg>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="dark:hidden">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
       </svg>
     </motion.button>
   );
@@ -96,7 +125,7 @@ export default function Nav() {
                   href={`#${n.id}`}
                   aria-current={active === n.id ? "true" : undefined}
                   className={`rounded-full border-2 px-3.5 py-1 text-sm font-bold transition ${
-                    active === n.id ? "border-ink bg-accent" : "border-transparent hover:border-ink hover:bg-accent/60"
+                    active === n.id ? "border-ink bg-accent" : "border-transparent hover:border-ink hover:bg-accent hover:text-[#151515]"
                   }`}
                 >
                   {n.label}
@@ -106,6 +135,7 @@ export default function Nav() {
           </ul>
 
           <div className="flex items-center gap-2">
+            <ThemeButton />
             <MoodButton />
             <a
               href={asset(profile.resume)}
@@ -139,7 +169,7 @@ export default function Nav() {
               <ul className="grid gap-1.5">
                 {nav.map((n) => (
                   <li key={n.id}>
-                    <a href={`#${n.id}`} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-lg font-bold hover:bg-accent">
+                    <a href={`#${n.id}`} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-lg font-bold hover:bg-accent hover:text-[#151515]">
                       {n.label}
                     </a>
                   </li>

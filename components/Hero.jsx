@@ -55,8 +55,8 @@ export default function Hero() {
             className="brut-sm mb-6 inline-flex items-center gap-2 rounded-full bg-mint px-4 py-1.5 text-sm font-bold"
           >
             <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-50" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ink" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#151515] opacity-50" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#151515]" />
             </span>
             {profile.role} @ {profile.company} · {profile.location}
           </motion.p>

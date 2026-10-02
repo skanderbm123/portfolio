@@ -27,7 +27,7 @@ export default function About() {
               <p className="font-pixel text-sm">Education</p>
               <p className="mt-1 text-lg font-extrabold leading-tight">{about.education.degree}</p>
               <p className="font-semibold">{about.education.school}</p>
-              <p className="mt-1 text-sm font-medium text-ink/75">{about.education.note}</p>
+              <p className="mt-1 text-sm font-medium text-[#151515]/75">{about.education.note}</p>
             </div>
           </Reveal>
 
